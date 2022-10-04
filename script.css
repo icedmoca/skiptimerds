@@ -1,0 +1,122 @@
+<script type="application/javascript">
+ 
+    $(function() {
+ 
+        var bal_hrs = '00:27:00';
+ 
+        var baltime = 1620;
+ 
+        var course_status = 'notpassed';
+ 
+        
+ 
+        if(course_status == 'notpassed'){
+ 
+        if(baltime) {
+ 
+        if(bal_hrs != '00:00:00') {
+ 
+            
+ 
+            $('#counter_2').css('display','block');
+ 
+            $('#time_display').css('display','block');
+ 
+            $('#continue').css('display','none');
+ 
+            var clock = $('#counter_2').FlipClock({
+                countdown: true,
+                callbacks: {
+                    stop: function(){
+                        $('#continue').css('display','block');
+                        setTimeout(function() {
+                            window.onbeforeunload = '';
+//                          window.location.href = 'chapter_exam.php';
+                        },2000);
+                        
+                    },
+                    interval: function(){
+//                      if (this.count%60*15==0)
+                        if (this.count%60*15==0)
+                        {
+                            
+                        }
+                    }
+                }
+            });
+            clock.setTime(baltime);
+            clock.start();
+            window.setInterval(function(){$.get('?keepalive=yes');}, 5*60000);
+ 
+/*
+            $('#counter_2').countdown({
+ 
+    
+ 
+                image: 'images/digits.png',
+ 
+    
+ 
+                startTime: bal_hrs,
+ 
+    
+ 
+                timerEnd: function() {
+ 
+                    $('#continue').css('display','block');
+ 
+                    setTimeout(function() {
+ 
+                    window.onbeforeunload = '';
+ 
+    
+ 
+                   window.location.href = 'chapter_exam.php';
+ 
+                    },2000);
+ 
+    
+ 
+                },
+ 
+    
+ 
+                format: 'mm:ss'
+ 
+    
+ 
+            });
+*/
+        }
+ 
+        }
+ 
+        }
+ 
+        
+        
+                
+        
+        /*
+                var idleTime = 0;
+                var idleInterval = setInterval(timerIncrement, 60000); // 60 sec
+ 
+                $('*').bind('mousemove click keydown scroll', function () {
+                    idleTime = 0;
+                });
+                
+                function timerIncrement() {
+                    idleTime++;
+                    if (idleTime >= 1) { // idle for >52 minutes
+                        alert("Your session has been idle for more than 52 min. Your account has been deactivated.");
+                        window.onbeforeunload = null;
+                        location.search = 'lock';
+                    }                   
+                }        
+*/
+ 
+ 
+ 
+    });
+ 
+    </script>
